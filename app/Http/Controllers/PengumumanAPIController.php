@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\KategoriBerita;
+use App\Pengumuman;
 use Illuminate\Http\Request;
 
-class KategoriBeritaAPIController extends Controller
+class PengumumanAPIController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,12 @@ class KategoriBeritaAPIController extends Controller
      */
     public function index()
     {
-        $kategoriberita=KategoriBerita::all();
+        $pengumuman=Pengumuman::all();
 
-        return $kategoriberita;
+        return $pengumuman;
     }
 
+    
 
     /**
      * Store a newly created resource in storage.
@@ -28,11 +29,11 @@ class KategoriBeritaAPIController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->orderBy('id','desc')->get();
+        $input=$request->all();
 
-        $kategoriberita=KategoriBerita::create($input);
+        $pengumuman=Pengumuman::create($input);
 
-        return $kategoriberita;
+        return $pengumuman;
     }
 
     /**
@@ -43,12 +44,13 @@ class KategoriBeritaAPIController extends Controller
      */
     public function show($id)
     {
-        $kategoriberita=KategoriBerita::find($id);
+        $pengumuman=Pengumuman::find($id);
 
-        return $kategoriberita;
+        return $pengumuman;
     }
 
     
+
     /**
      * Update the specified resource in storage.
      *
@@ -60,14 +62,14 @@ class KategoriBeritaAPIController extends Controller
     {
         $input=$request->all();
 
-        $kategoriberita=KategoriBerita::find($id);
+        $pengumuman=Pengumuman::find($id);
 
-        if(empty($kategoriberita)){
+        if(empty($pengumuman)){
             return response()->json(['message'=>'data tidak ditemukan'], 404);
         }
-            $kategoriberita->update($input);
+            $pengumuman->update($input);
 
-            return response()->json($kategoriberita);
+            return response()->json($pengumuman);
     }
 
     /**
@@ -78,12 +80,12 @@ class KategoriBeritaAPIController extends Controller
      */
     public function destroy($id)
     {
-        $kategoriberita=KategoriBerita::find($id);
+        $pengumuman=Pengumuman::find($id);
 
-        if(empty($kategoriberita)){
+        if(empty($pengumuman)){
             return response()->json(['message'=>'data tidak ditemukan'], 404);
         }
-        $kategoriberita->delete();
+        $pengumuman->delete();
 
         return response()->json(['message'=>'data telah dihapus']);
     }

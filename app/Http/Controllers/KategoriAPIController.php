@@ -57,7 +57,16 @@ class KategoriAPIController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input=$request->all();
+
+        $kategoriartikel=KategoriArtikel::find($id);
+
+        if(empty($kategoriartikel)){
+            return response()->json(['message'=>'data tidak ditemukan'], 404);
+        }
+            $kategoriartikel->update($input);
+
+            return response()->json($kategoriartikel);
     }
 
     /**
@@ -68,6 +77,13 @@ class KategoriAPIController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kategoriartikel=KategoriArtikel::find($id);
+
+        if(empty($kategoriartikel)){
+            return response()->json(['message'=>'data tidak ditemukan'], 404);
+        }
+        $kategoriartikel->delete();
+
+        return response()->json(['message'=>'data telah dihapus']);
     }
 }

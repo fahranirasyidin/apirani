@@ -5,16 +5,15 @@ namespace App;
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Berita extends Model
+class KategoriPengumuman extends Model
 {
-    protected $table = 'berita';
+    protected $table = 'kategori_pengumuman';
 
     protected $fillable = [
-        'judul','isi','users_id','kategori_artikel_id'
+        'nama','users_id'
     ];
-    public function kategoriBerita()
-    {
-        return $this->belongsTo( \App\KategoriBerita::class, 'kategori_berita_id', 'id');
+    public function pengumuman(){
+        return $this->hasMany( \App\Pengumuman::class, 'kategori_pengumuman_id', 'id');
     }
     public function User()
     {

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\KategoriBerita;
+use App\Galeri;
 use Illuminate\Http\Request;
 
-class KategoriBeritaAPIController extends Controller
+class GaleriAPIController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,11 @@ class KategoriBeritaAPIController extends Controller
      */
     public function index()
     {
-        $kategoriberita=KategoriBerita::all();
+        $galeri=Galeri::all();
 
-        return $kategoriberita;
+        return $galeri;
     }
+
 
 
     /**
@@ -28,11 +29,11 @@ class KategoriBeritaAPIController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->orderBy('id','desc')->get();
+        $input=$request->all();
 
-        $kategoriberita=KategoriBerita::create($input);
+        $galeri=Galeri::create($input);
 
-        return $kategoriberita;
+        return $galeri;
     }
 
     /**
@@ -43,9 +44,9 @@ class KategoriBeritaAPIController extends Controller
      */
     public function show($id)
     {
-        $kategoriberita=KategoriBerita::find($id);
+        $galeri=Galeri::find($id);
 
-        return $kategoriberita;
+        return $galeri;
     }
 
     
@@ -60,14 +61,14 @@ class KategoriBeritaAPIController extends Controller
     {
         $input=$request->all();
 
-        $kategoriberita=KategoriBerita::find($id);
+        $galeri=Galeri::find($id);
 
-        if(empty($kategoriberita)){
+        if(empty($galeri)){
             return response()->json(['message'=>'data tidak ditemukan'], 404);
         }
-            $kategoriberita->update($input);
+            $galeri->update($input);
 
-            return response()->json($kategoriberita);
+            return response()->json($galeri);
     }
 
     /**
@@ -78,12 +79,12 @@ class KategoriBeritaAPIController extends Controller
      */
     public function destroy($id)
     {
-        $kategoriberita=KategoriBerita::find($id);
+        $galeri=Galeri::find($id);
 
-        if(empty($kategoriberita)){
+        if(empty($galeri)){
             return response()->json(['message'=>'data tidak ditemukan'], 404);
         }
-        $kategoriberita->delete();
+        $galeri->delete();
 
         return response()->json(['message'=>'data telah dihapus']);
     }

@@ -5,16 +5,16 @@ namespace App;
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Berita extends Model
+class Pengumuman extends Model
 {
-    protected $table = 'berita';
+    protected $table = 'pengumuman';
 
     protected $fillable = [
-        'judul','isi','users_id','kategori_artikel_id'
+        'judul','isi','users_id','kategori_pengumuman_id'
     ];
-    public function kategoriBerita()
+    public function kategoriPengumuman()
     {
-        return $this->belongsTo( \App\KategoriBerita::class, 'kategori_berita_id', 'id');
+        return $this->belongsTo( \App\KategoriPengumuman::class, 'kategori_pengumuman_id', 'id');
     }
     public function User()
     {
